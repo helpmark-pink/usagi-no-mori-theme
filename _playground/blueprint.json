@@ -1,0 +1,48 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "steps": [
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/helpmark-pink/usagi-no-mori-theme",
+        "ref": "HEAD"
+      },
+      "options": {
+        "activate": true
+      },
+      "progress": {
+        "caption": "オリジナルテーマ「うさぎの森 えいごスクール」を読み込んでいます"
+      }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "うさぎの森 えいごスクール",
+        "blogdescription": "「話したい」が芽を出す場所（架空のスクールです）",
+        "permalink_structure": "/%postname%/",
+        "timezone_string": "Asia/Tokyo"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; require_once get_template_directory() . '/_playground/demo-content.php';",
+      "progress": {
+        "caption": "お知らせとよくあるご質問を登録しています"
+      }
+    },
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    }
+  ]
+}
