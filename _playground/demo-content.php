@@ -229,6 +229,16 @@ foreach ( $aa5_news as $aa5_item ) {
 	}
 }
 
+/* ------------------------------------------------------------------
+   デモの表示設定
+   サイト側の上部に出る管理バーを隠す。
+   （このテーマはヘッダーを position: fixed で固定しているため、
+     管理バーが重なって見た目が崩れる。管理画面は /wp-admin/ から開ける）
+   ------------------------------------------------------------------ */
+foreach ( get_users( array( 'fields' => 'ID' ) ) as $aa5_user_id ) {
+	update_user_meta( $aa5_user_id, 'show_admin_bar_front', 'false' );
+}
+
 // 「未分類」に残るサンプル記事は消しておく。
 $aa5_hello = get_page_by_path( 'hello-world', OBJECT, 'post' );
 if ( $aa5_hello ) {
